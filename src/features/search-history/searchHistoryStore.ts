@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+
 import { MAX_HISTORY, STORAGE_KEYS } from '@/shared/config/constants';
 
 interface SearchHistoryState {

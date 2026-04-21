@@ -1,7 +1,7 @@
-import type { BookDocument } from '@/shared/api/kakao-book/types';
-import { BookCover } from '@/entities/book/ui/BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
 import { formatAuthors } from '@/entities/book/model/selectors';
+import { BookCover } from '@/entities/book/ui/BookCover';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { formatKRW, hasDiscount } from '@/shared/lib/format';
 import { Button } from '@/shared/ui/button';
 

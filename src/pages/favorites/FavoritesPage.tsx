@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
+
+import { useFavoriteStore } from '@/features/toggle-favorite/favoriteStore';
 import { BookCard } from '@/entities/book/ui/BookCard';
+import { PAGE_SIZE } from '@/shared/config/constants';
+import { pickIsbn } from '@/shared/lib/format';
 import { CountText } from '@/shared/ui/count-text';
 import { EmptyState } from '@/shared/ui/empty-state';
 import { InfiniteSentinel } from '@/shared/ui/infinite-sentinel';
-import { useFavoriteStore } from '@/features/toggle-favorite/favoriteStore';
-import { PAGE_SIZE } from '@/shared/config/constants';
-import { pickIsbn } from '@/shared/lib/format';
 
 // 찜 목록 페이지. 스토어 스냅샷을 클라이언트에서 PAGE_SIZE 단위로 슬라이싱.
 export const FavoritesPage = () => {

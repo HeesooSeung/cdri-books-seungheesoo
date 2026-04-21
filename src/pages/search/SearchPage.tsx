@@ -1,5 +1,5 @@
-import { SearchBar } from '@/widgets/search-bar/SearchBar';
 import { BookList } from '@/widgets/book-list/BookList';
+import { SearchBar } from '@/widgets/search-bar/SearchBar';
 
 // 도서 검색 페이지.
 export const SearchPage = () => (

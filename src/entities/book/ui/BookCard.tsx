@@ -1,11 +1,10 @@
 import { Suspense, lazy, memo } from 'react';
-import type { BookDocument } from '@/shared/api/kakao-book/types';
-import { BookCover } from './BookCover';
+
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
+import { BookCover } from './BookCover';
 import { formatAuthors, displayPrice } from '@/entities/book/model/selectors';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { formatKRW } from '@/shared/lib/format';
-import { ChevronIcon } from '@/shared/ui/icons';
-import { Button } from '@/shared/ui/button';
 import {
   Accordion,
   AccordionItem,
@@ -13,6 +12,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/shared/ui/accordion';
+import { Button } from '@/shared/ui/button';
+import { ChevronIcon } from '@/shared/ui/icons';
 
 // 상세보기 펼침 시점에만 코드 분할 로드 — 초기 번들에서 제외.
 const BookAccordion = lazy(() =>

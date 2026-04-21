@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+
 import { searchBooks } from '@/shared/api/kakao-book/searchBooks';
 import type { SearchTarget } from '@/shared/api/kakao-book/types';
 import { PAGE_SIZE, MAX_PAGE } from '@/shared/config/constants';

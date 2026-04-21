@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Header } from '@/widgets/header/Header';
-import { SearchPage } from '@/pages/search/SearchPage';
+
 import { FavoritesPage } from '@/pages/favorites/FavoritesPage';
+import { SearchPage } from '@/pages/search/SearchPage';
+import { Header } from '@/widgets/header/Header';
 
 // 루트 레이아웃 + 라우트.
 export const App = () => (

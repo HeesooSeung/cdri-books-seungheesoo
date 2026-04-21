@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { SearchTarget } from '@/shared/api/kakao-book/types';
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import { Input } from '@/shared/ui/input';
-import { cn } from '@/shared/lib/cn';
-import { ChevronIcon } from '@/shared/ui/icons';
-import { Button } from '@/shared/ui/button';
+
 import { useSearchModeStore } from '@/features/search-books/searchModeStore';
+import type { SearchTarget } from '@/shared/api/kakao-book/types';
+import { cn } from '@/shared/lib/cn';
+import { Button } from '@/shared/ui/button';
+import { ChevronIcon } from '@/shared/ui/icons';
+import { Input } from '@/shared/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 
 interface DetailSearchPopoverProps {
   trigger: React.ReactNode;

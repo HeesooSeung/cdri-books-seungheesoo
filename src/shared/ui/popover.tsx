@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   Root,
   Trigger,
@@ -6,6 +7,7 @@ import {
   Portal,
   Content,
 } from '@radix-ui/react-popover';
+
 import { cn } from '@/shared/lib/cn';
 
 export const Popover = Root;

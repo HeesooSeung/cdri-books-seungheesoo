@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import type { SearchTarget } from '@/shared/api/kakao-book/types';
 
 export type SearchMode = 'idle' | 'general' | 'detail';

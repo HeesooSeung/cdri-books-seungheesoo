@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   Root,
   Item,
@@ -6,6 +7,7 @@ import {
   Trigger,
   Content,
 } from '@radix-ui/react-accordion';
+
 import { cn } from '@/shared/lib/cn';
 
 // Radix accordion 래퍼. Header 는 trigger 이외 요소도 배치 가능하도록 분리 export.

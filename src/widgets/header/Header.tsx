@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import { cn } from '@/shared/lib/cn';
 
 // GNB. 로고 + 검색/찜 탭 2개. 활성 탭 하단에 brand 색 1px 바.

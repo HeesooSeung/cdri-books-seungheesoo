@@ -1,12 +1,13 @@
 import { useState, useCallback } from 'react';
+
+import { DetailSearchPopover } from '@/features/detail-search/DetailSearchPopover';
+import { useSearchModeStore } from '@/features/search-books/searchModeStore';
+import { SearchHistoryDropdown } from '@/features/search-history/SearchHistoryDropdown';
+import { useSearchHistoryStore } from '@/features/search-history/searchHistoryStore';
+import { Button } from '@/shared/ui/button';
+import { SearchIcon } from '@/shared/ui/icons';
 import { Input } from '@/shared/ui/input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/shared/ui/popover';
-import { Button } from '@/shared/ui/button';
-import { SearchHistoryDropdown } from '@/features/search-history/SearchHistoryDropdown';
-import { DetailSearchPopover } from '@/features/detail-search/DetailSearchPopover';
-import { useSearchHistoryStore } from '@/features/search-history/searchHistoryStore';
-import { useSearchModeStore } from '@/features/search-books/searchModeStore';
-import { SearchIcon } from '@/shared/ui/icons';
 
 // 검색창 위젯. Enter 시 일반 검색, 상세검색 버튼 시 상세 검색 팝업 노출.
 export const SearchBar = () => {
