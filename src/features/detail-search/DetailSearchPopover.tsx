@@ -40,7 +40,6 @@ export const DetailSearchPopover = ({ trigger, onSubmit }: DetailSearchPopoverPr
   };
 
   // 전체 검색 실행마다 상세 검색 필터·입력값 초기화.
-  // setGeneral 호출 = store mutation + mode='general' → subscribe 콜백으로 매번 캐치.
   useEffect(() => {
     const unsub = useSearchModeStore.subscribe((state) => {
       if (state.mode === 'general') {

@@ -19,18 +19,20 @@ export const BookCard = ({ book }: BookCardProps) => {
 
   return (
     <div className="w-[960px] bg-white">
-      <div className="relative h-[100px]">
-        <div className="absolute left-[48px] top-[16px] h-[68px] w-[48px]">
+      <div className="flex h-[100px] items-center border-b border-surface-divider">
+        <div className="relative ml-[48px] h-[68px] w-[48px] shrink-0">
           <BookCover src={book.thumbnail} alt={book.title} className="h-full w-full" />
-          <div className="absolute left-[32px] top-0">
-            <ToggleFavoriteButton book={book} size={16} />
-          </div>
+          <ToggleFavoriteButton
+            book={book}
+            size={16}
+            className="absolute left-[32px] top-0"
+          />
         </div>
 
-        <div className="absolute left-[144px] top-[41px] flex w-[408px] items-center justify-start gap-[16px] whitespace-nowrap">
+        <div className="ml-[48px] flex w-[408px] shrink-0 items-center gap-[16px] whitespace-nowrap">
           <span
             title={book.title}
-            className="min-w-0 max-w-[232px] truncate text-[18px] font-bold leading-[18px] text-ink-primary"
+            className="min-w-0 max-w-[232px] truncate text-title3 text-ink-primary"
           >
             {book.title}
           </span>
@@ -42,14 +44,14 @@ export const BookCard = ({ book }: BookCardProps) => {
           </span>
         </div>
 
-        <p className="absolute right-[310px] top-[41px] whitespace-nowrap text-right text-[18px] font-bold leading-[18px] text-ink-primary">
+        <p className="ml-auto whitespace-nowrap text-right text-title3 text-ink-primary">
           {formatKRW(displayPrice(book))}
         </p>
 
         <Button
           variant="primary"
           size="md"
-          className="absolute right-[139px] top-[26px] w-[115px] text-caption"
+          className="ml-[56px] w-[115px] text-caption"
           onClick={() => window.open(book.url, '_blank', 'noopener,noreferrer')}
         >
           구매하기
@@ -59,7 +61,7 @@ export const BookCard = ({ book }: BookCardProps) => {
           variant="subtle"
           size="md"
           aria-expanded={open}
-          className="absolute right-[16px] top-[26px] w-[115px] justify-between pl-[20px] pr-[17px] text-caption"
+          className="ml-[8px] mr-[16px] w-[115px] justify-between pl-[20px] pr-[17px] text-caption"
           onClick={() => setOpen((prev) => !prev)}
         >
           <span>상세보기</span>
@@ -68,8 +70,6 @@ export const BookCard = ({ book }: BookCardProps) => {
             className={cn('h-[14px] w-[8px] text-ink-secondary transition-transform')}
           />
         </Button>
-
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-surface-divider" />
       </div>
 
       {open && <BookAccordion book={book} />}
