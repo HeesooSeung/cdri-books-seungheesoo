@@ -66,9 +66,12 @@ src/
 │   ├── search-history/     # 최근 검색어 스토어 + 드롭다운
 │   ├── toggle-favorite/    # 찜 토글 + 스토어
 │   └── book-accordion/     # 상세 정보 (lazy chunk)
-├── entities/book/          # BookCard, BookCover, formatter
+├── entities/
+│   ├── book/               # BookCard, BookCover, formatter
+│   └── favorite/           # 찜 도메인 모델
 └── shared/
     ├── api/                # Kakao 클라이언트 + 타입
+    ├── assets/             # 정적 자원
     ├── config/             # env, constants
     ├── lib/                # cn, format
     └── ui/                 # Button, Popover, Accordion, Input, Icons
