@@ -26,16 +26,16 @@ export const BookCard = ({ book }: BookCardProps) => {
           </div>
         </div>
 
-        <div className="absolute left-[144px] top-[41px] flex w-[408px] items-center gap-[16px] whitespace-nowrap">
+        <div className="absolute left-[144px] top-[41px] flex w-[408px] items-center justify-start gap-[16px] whitespace-nowrap">
           <span
             title={book.title}
-            className="min-w-0 flex-1 truncate text-[18px] font-bold leading-[18px] text-ink-primary"
+            className="min-w-0 max-w-[232px] truncate text-[18px] font-bold leading-[18px] text-ink-primary"
           >
             {book.title}
           </span>
           <span
             title={formatAuthors(book)}
-            className="max-w-[160px] shrink-0 truncate text-body2 text-ink-secondary"
+            className="min-w-0 max-w-[160px] shrink truncate text-body2 text-ink-secondary"
           >
             {formatAuthors(book)}
           </span>
