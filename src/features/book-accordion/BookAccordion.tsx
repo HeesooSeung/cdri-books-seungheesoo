@@ -1,4 +1,4 @@
-import type { BookDocument } from '@/shared/api/kakao-book';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { BookCover } from '@/entities/book/ui/BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
 import { formatAuthors } from '@/entities/book/model/selectors';

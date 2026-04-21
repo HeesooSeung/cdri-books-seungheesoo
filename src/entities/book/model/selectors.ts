@@ -1,4 +1,4 @@
-import type { BookDocument } from '@/shared/api/kakao-book';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { hasDiscount } from '@/shared/lib/format';
 
 // 저자 + 역자 콤마 결합.

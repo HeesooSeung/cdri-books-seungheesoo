@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
 import { useEffect, useMemo } from 'react';
-import type { BookDocument } from '@/shared/api/kakao-book';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { BookCard } from '@/entities/book/ui/BookCard';
 import { EmptyState } from '@/shared/ui/empty-state';
 import { CountText } from '@/shared/ui/count-text';

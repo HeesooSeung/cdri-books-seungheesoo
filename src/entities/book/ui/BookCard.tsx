@@ -1,5 +1,5 @@
 import { Suspense, lazy, memo } from 'react';
-import type { BookDocument } from '@/shared/api/kakao-book';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { BookCover } from './BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
 import { formatAuthors, displayPrice } from '@/entities/book/model/selectors';

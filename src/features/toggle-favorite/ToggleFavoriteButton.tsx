@@ -1,4 +1,4 @@
-import type { BookDocument } from '@/shared/api/kakao-book';
+import type { BookDocument } from '@/shared/api/kakao-book/types';
 import { pickIsbn } from '@/shared/lib/format';
 import { useFavoriteStore } from './favoriteStore';
 import { cn } from '@/shared/lib/cn';
