@@ -38,6 +38,17 @@ npm run dev        # http://localhost:5173
 
 Kakao 키 발급: https://developers.kakao.com → 앱 생성 → REST API 키 복사.
 
+#### ⚠️ 키 노출 주의
+`VITE_` prefix 환경 변수는 Vite 가 **클라이언트 번들에 plain text 로 인라인** 한다. 배포된 `dist/assets/*.js` 에 키가 그대로 노출되므로 DevTools 로 추출 가능.
+
+REST API 는 `Authorization: KakaoAK <key>` 헤더만 검증하므로, 브라우저에서 직접 호출하는 한 효과적인 키 은닉 수단은 사실상 **프록시 서버 분리** 하나임.
+
+**권장 조치**:
+- 별도 서버리스 함수 (Vercel Functions / Cloudflare Workers 등) 에 Kakao API 호출을 위임하고, 클라이언트는 자사 프록시 엔드포인트만 호출. 키는 서버 env 로 이동.
+- 프록시에 Origin / Referer 검사 + rate limit 를 걸어 쿼터 남용 방지.
+
+현재 구현은 단일 SPA 범위로 **클라이언트 직접 호출** 전제. 공개 배포 전 프록시 도입 권장.
+
 ### 스크립트
 | 명령 | 설명 |
 |------|------|
