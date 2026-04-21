@@ -3,6 +3,7 @@ import { BookCover } from '@/entities/book/ui/BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
 import { formatAuthors } from '@/entities/book/model/selectors';
 import { formatKRW, hasDiscount } from '@/shared/lib/format';
+import { Button } from '@/shared/ui/button';
 
 interface BookAccordionProps {
   book: BookDocument;
@@ -54,13 +55,14 @@ export const BookAccordion = ({ book }: BookAccordionProps) => {
         </span>
       </div>
 
-      <button
-        type="button"
-        className="absolute bottom-[40px] right-[16px] flex h-[48px] w-[240px] items-center justify-center rounded-[8px] bg-brand text-caption text-white hover:bg-brand-hover"
+      <Button
+        variant="primary"
+        size="md"
+        className="absolute bottom-[40px] right-[16px] w-[240px] text-caption"
         onClick={() => window.open(book.url, '_blank', 'noopener,noreferrer')}
       >
         구매하기
-      </button>
+      </Button>
 
       <div className="absolute bottom-0 left-0 right-0 h-px bg-surface-divider" />
     </div>

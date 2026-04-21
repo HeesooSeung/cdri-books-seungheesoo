@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Input } from '@/shared/ui/input';
 import { Popover, PopoverAnchor, PopoverContent } from '@/shared/ui/popover';
+import { Button } from '@/shared/ui/button';
 import { SearchHistoryDropdown } from '@/features/search-history/SearchHistoryDropdown';
 import { DetailSearchPopover } from '@/features/detail-search/DetailSearchPopover';
 import { useSearchHistoryStore } from '@/features/search-history/searchHistoryStore';
@@ -73,12 +74,13 @@ export const SearchBar = () => {
 
             <DetailSearchPopover
               trigger={
-                <button
-                  type="button"
-                  className="ml-[16px] flex h-[35px] w-[72px] items-center justify-center rounded-[8px] border border-ink-subtitle bg-white text-body2 text-ink-subtitle"
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="ml-[16px] h-[35px] w-[72px] border-ink-subtitle px-[10px] py-[5px] text-body2 text-ink-subtitle hover:bg-white"
                 >
                   상세검색
-                </button>
+                </Button>
               }
               onSubmit={runDetail}
             />

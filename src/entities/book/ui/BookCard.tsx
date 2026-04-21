@@ -7,6 +7,7 @@ import { formatAuthors, displayPrice } from '@/entities/book/model/selectors';
 import { formatKRW } from '@/shared/lib/format';
 import { cn } from '@/shared/lib/cn';
 import { ChevronIcon } from '@/shared/ui/icons';
+import { Button } from '@/shared/ui/button';
 
 interface BookCardProps {
   book: BookDocument;
@@ -45,18 +46,20 @@ export const BookCard = ({ book }: BookCardProps) => {
           {formatKRW(displayPrice(book))}
         </p>
 
-        <button
-          type="button"
-          className="absolute right-[139px] top-[26px] flex h-[48px] w-[115px] items-center justify-center rounded-[8px] bg-brand text-caption text-white hover:bg-brand-hover"
+        <Button
+          variant="primary"
+          size="md"
+          className="absolute right-[139px] top-[26px] w-[115px] text-caption"
           onClick={() => window.open(book.url, '_blank', 'noopener,noreferrer')}
         >
           구매하기
-        </button>
+        </Button>
 
-        <button
-          type="button"
+        <Button
+          variant="subtle"
+          size="md"
           aria-expanded={open}
-          className="absolute right-[16px] top-[26px] flex h-[48px] w-[115px] items-center justify-between rounded-[8px] bg-surface-light pl-[20px] pr-[17px] text-caption text-ink-secondary hover:bg-surface-light/70"
+          className="absolute right-[16px] top-[26px] w-[115px] justify-between pl-[20px] pr-[17px] text-caption"
           onClick={() => setOpen((prev) => !prev)}
         >
           <span>상세보기</span>
@@ -64,7 +67,7 @@ export const BookCard = ({ book }: BookCardProps) => {
             dir={open ? 'up' : 'down'}
             className={cn('h-[14px] w-[8px] text-ink-secondary transition-transform')}
           />
-        </button>
+        </Button>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-surface-divider" />
       </div>

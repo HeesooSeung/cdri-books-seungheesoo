@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Input } from '@/shared/ui/input';
 import { cn } from '@/shared/lib/cn';
 import { ChevronIcon } from '@/shared/ui/icons';
+import { Button } from '@/shared/ui/button';
 import { useSearchModeStore } from '@/features/search-books/searchModeStore';
 
 interface DetailSearchPopoverProps {
@@ -105,13 +106,14 @@ export const DetailSearchPopover = ({ trigger, onSubmit }: DetailSearchPopoverPr
               className="h-[36px] w-[208px] border-b border-brand px-[4px] text-cap placeholder:text-ink-subtitle"
             />
           </div>
-          <button
-            type="button"
+          <Button
+            variant="primary"
+            size="sm"
             onClick={handleSubmit}
-            className="flex h-[36px] w-full items-center justify-center rounded-[8px] bg-brand text-cap text-white hover:bg-brand-hover"
+            className="w-full px-[10px] py-[5px]"
           >
             검색하기
-          </button>
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
