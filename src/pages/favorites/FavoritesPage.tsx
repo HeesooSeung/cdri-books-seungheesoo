@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { BookCard } from '@/entities/book/ui/BookCard';
 import { CountText } from '@/shared/ui/count-text';
 import { EmptyState } from '@/shared/ui/empty-state';
@@ -12,12 +12,15 @@ export const FavoritesPage = () => {
   const items = useFavoriteStore((state) => state.items);
   const [visible, setVisible] = useState(PAGE_SIZE);
 
-  useEffect(() => {
-    setVisible((current) => Math.min(Math.max(current, PAGE_SIZE), Math.max(items.length, PAGE_SIZE)));
-  }, [items.length]);
-
-  const slice = useMemo(() => items.slice(0, visible), [items, visible]);
-  const hasMore = visible < items.length;
+  const effectiveVisible = Math.min(
+    Math.max(visible, PAGE_SIZE),
+    Math.max(items.length, PAGE_SIZE),
+  );
+  const slice = useMemo(
+    () => items.slice(0, effectiveVisible),
+    [items, effectiveVisible],
+  );
+  const hasMore = effectiveVisible < items.length;
 
   return (
     <div className="mx-auto w-[960px] pt-[80px]">

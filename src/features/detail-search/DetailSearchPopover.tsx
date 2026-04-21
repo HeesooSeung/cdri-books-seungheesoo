@@ -39,13 +39,17 @@ export const DetailSearchPopover = ({ trigger, onSubmit }: DetailSearchPopoverPr
     queueMicrotask(() => onSubmit(target, trimmed));
   };
 
-  // 전체 검색 실행 시 상세 검색 입력값 초기화.
-  const generalTick = useSearchModeStore((state) =>
-    state.mode === 'general' ? state.query : null,
-  );
+  // 전체 검색 실행마다 상세 검색 필터·입력값 초기화.
+  // setGeneral 호출 = store mutation + mode='general' → subscribe 콜백으로 매번 캐치.
   useEffect(() => {
-    if (generalTick !== null) setQuery('');
-  }, [generalTick]);
+    const unsub = useSearchModeStore.subscribe((state) => {
+      if (state.mode === 'general') {
+        setQuery('');
+        setTarget('title');
+      }
+    });
+    return unsub;
+  }, []);
 
   return (
     <Popover open={open} onOpenChange={handleOpenChange}>
