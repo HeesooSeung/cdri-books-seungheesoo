@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, memo } from 'react';
 import type { BookDocument } from '@/shared/api/kakao-book';
 import { BookCover } from './BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
@@ -24,7 +24,7 @@ interface BookCardProps {
 }
 
 // 도서 한 건 카드. Radix Accordion 으로 상세 펼침 제어. 상세보기 버튼만 Trigger 로 지정.
-export const BookCard = ({ book }: BookCardProps) => (
+const BookCardComponent = ({ book }: BookCardProps) => (
   <Accordion type="single" collapsible>
     <AccordionItem value="detail" className="w-[960px] bg-white">
       <div className="flex h-[100px] items-center border-b border-surface-divider">
@@ -90,3 +90,6 @@ export const BookCard = ({ book }: BookCardProps) => (
     </AccordionItem>
   </Accordion>
 );
+
+export const BookCard = memo(BookCardComponent);
+BookCard.displayName = 'BookCard';
