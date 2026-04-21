@@ -1,32 +1,47 @@
 import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import {
+  Root,
+  Item,
+  Header,
+  Trigger,
+  Content,
+} from '@radix-ui/react-accordion';
 import { cn } from '@/shared/lib/cn';
 
-export const Accordion = AccordionPrimitive.Root;
-export const AccordionItem = AccordionPrimitive.Item;
+// Radix accordion 래퍼. Header 는 trigger 이외 요소도 배치 가능하도록 분리 export.
+
+export const Accordion = Root;
+
+export const AccordionItem = React.forwardRef<
+  React.ElementRef<typeof Item>,
+  React.ComponentPropsWithoutRef<typeof Item>
+>(({ className, ...props }, ref) => (
+  <Item ref={ref} className={cn(className)} {...props} />
+));
+AccordionItem.displayName = 'AccordionItem';
+
+export const AccordionHeader = Header;
 
 export const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...rest }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger ref={ref} className={cn('flex flex-1 items-center', className)} {...rest}>
-      {children}
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
+  React.ElementRef<typeof Trigger>,
+  React.ComponentPropsWithoutRef<typeof Trigger>
+>(({ className, children, ...props }, ref) => (
+  <Trigger ref={ref} className={cn(className)} {...props}>
+    {children}
+  </Trigger>
 ));
 AccordionTrigger.displayName = 'AccordionTrigger';
 
 export const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...rest }, ref) => (
-  <AccordionPrimitive.Content
+  React.ElementRef<typeof Content>,
+  React.ComponentPropsWithoutRef<typeof Content>
+>(({ className, children, ...props }, ref) => (
+  <Content
     ref={ref}
     className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
-    {...rest}
+    {...props}
   >
-    <div className={cn('pb-2 pt-0', className)}>{children}</div>
-  </AccordionPrimitive.Content>
+    <div className={cn(className)}>{children}</div>
+  </Content>
 ));
 AccordionContent.displayName = 'AccordionContent';
