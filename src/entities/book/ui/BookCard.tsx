@@ -5,7 +5,6 @@ import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteB
 import { BookAccordion } from '@/features/book-accordion/BookAccordion';
 import { formatAuthors, displayPrice } from '@/entities/book/model/selectors';
 import { formatKRW } from '@/shared/lib/format';
-import { cn } from '@/shared/lib/cn';
 import { ChevronIcon } from '@/shared/ui/icons';
 import { Button } from '@/shared/ui/button';
 
@@ -67,7 +66,7 @@ export const BookCard = ({ book }: BookCardProps) => {
           <span>상세보기</span>
           <ChevronIcon
             dir={open ? 'up' : 'down'}
-            className={cn('h-[14px] w-[8px] text-ink-secondary transition-transform')}
+            className="h-[14px] w-[8px] text-ink-secondary"
           />
         </Button>
       </div>

@@ -36,18 +36,29 @@ export const HeartFillIcon = ({ className }: IconProps) => (
 );
 
 interface ChevronIconProps extends IconProps {
-  dir?: 'up' | 'down' | 'right';
+  dir?: 'up' | 'down' | 'right' | 'left';
 }
 
-// 꺾쇠.
-export const ChevronIcon = ({ className, dir = 'down' }: ChevronIconProps) => {
-  const rotate = dir === 'up' ? 'rotate(-90 4 7)' : dir === 'right' ? '' : 'rotate(90 4 7)';
-  return (
-    <svg viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden className={cn('block', className)}>
-      <path d="M0 12L5 7L0 2L1 0L8 7L1 14L0 12Z" fill="currentColor" transform={rotate} />
-    </svg>
-  );
+// dir 별 CSS rotate 매핑 — SVG 내부 transform 속성 대신 CSS 로 회전해야 transition-transform 가 동작.
+const CHEVRON_ROTATE: Record<NonNullable<ChevronIconProps['dir']>, string> = {
+  right: 'rotate-0',
+  down: 'rotate-90',
+  left: 'rotate-180',
+  up: '-rotate-90',
 };
+
+// 꺾쇠. 기본 방향 right 기준 path, dir 에 따라 CSS transform 으로 회전.
+export const ChevronIcon = ({ className, dir = 'down' }: ChevronIconProps) => (
+  <svg
+    viewBox="0 0 8 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden
+    className={cn('block transition-transform', CHEVRON_ROTATE[dir], className)}
+  >
+    <path d="M0 12L5 7L0 2L1 0L8 7L1 14L0 12Z" fill="currentColor" />
+  </svg>
+);
 
 // X 닫기.
 export const CloseIcon = ({ className }: IconProps) => (
