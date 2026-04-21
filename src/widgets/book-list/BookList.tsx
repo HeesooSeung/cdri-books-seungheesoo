@@ -28,8 +28,11 @@ export const BookList = () => {
   } = useSearchBooksInfinite({ query, target, enabled });
 
   useEffect(() => {
-    if (isError) toast.error((error as Error)?.message ?? '검색 중 오류가 발생했습니다.');
-  }, [isError, error]);
+    if (!isError) return;
+    toast.error((error as Error)?.message ?? '검색 중 오류가 발생했습니다.', {
+      id: `search-error:${target ?? 'general'}:${query}`,
+    });
+  }, [isError, error, query, target]);
 
   const documents = useMemo<BookDocument[]>(
     () => data?.pages.flatMap((page) => page.documents) ?? [],
