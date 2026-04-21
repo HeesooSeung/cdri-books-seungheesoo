@@ -16,6 +16,7 @@ export const SearchBar = () => {
   const addHistory = useSearchHistoryStore((state) => state.add);
   const setGeneral = useSearchModeStore((state) => state.setGeneral);
   const setDetail = useSearchModeStore((state) => state.setDetail);
+  const resetMode = useSearchModeStore((state) => state.reset);
 
   const runGeneral = useCallback(
     (query: string) => {
@@ -25,6 +26,18 @@ export const SearchBar = () => {
       setHistoryOpen(false);
     },
     [addHistory, setGeneral],
+  );
+
+  const runDetail = useCallback(
+    (target: Parameters<typeof setDetail>[0], query: string) => {
+      setValue('');
+      if (!query) {
+        resetMode();
+        return;
+      }
+      setDetail(target, query);
+    },
+    [setDetail, resetMode],
   );
 
   const popoverOpen = historyOpen && historyItems.length > 0;
@@ -67,10 +80,7 @@ export const SearchBar = () => {
                   상세검색
                 </button>
               }
-              onSubmit={(target, query) => {
-                setDetail(target, query);
-                setValue('');
-              }}
+              onSubmit={runDetail}
             />
           </div>
         </PopoverAnchor>

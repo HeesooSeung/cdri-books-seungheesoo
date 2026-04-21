@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { SearchTarget } from '@/shared/api/kakao-book';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { Input } from '@/shared/ui/input';
 import { cn } from '@/shared/lib/cn';
 import { ChevronIcon } from '@/shared/ui/icons';
+import { useSearchModeStore } from '@/features/search-books/searchModeStore';
 
 interface DetailSearchPopoverProps {
   trigger: React.ReactNode;
@@ -31,12 +32,19 @@ export const DetailSearchPopover = ({ trigger, onSubmit }: DetailSearchPopoverPr
   };
 
   const handleSubmit = () => {
-    if (!query.trim()) return;
-    onSubmit(target, query.trim());
+    const trimmed = query.trim();
     setOpen(false);
     setTargetOpen(false);
-    setQuery('');
+    queueMicrotask(() => onSubmit(target, trimmed));
   };
+
+  // 전체 검색 실행 시 상세 검색 입력값 초기화.
+  const generalTick = useSearchModeStore((state) =>
+    state.mode === 'general' ? state.query : null,
+  );
+  useEffect(() => {
+    if (generalTick !== null) setQuery('');
+  }, [generalTick]);
 
   return (
     <Popover open={open} onOpenChange={handleOpenChange}>
