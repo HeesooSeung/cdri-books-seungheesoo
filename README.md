@@ -67,8 +67,7 @@ src/
 │   ├── toggle-favorite/    # 찜 토글 + 스토어
 │   └── book-accordion/     # 상세 정보 (lazy chunk)
 ├── entities/
-│   ├── book/               # BookCard, BookCover, formatter
-│   └── favorite/           # 찜 도메인 모델
+│   └── book/               # BookCard, BookCover, formatter
 └── shared/
     ├── api/                # Kakao 클라이언트 + 타입
     ├── assets/             # 정적 자원
@@ -80,13 +79,18 @@ src/
 | 파일 | 역할 |
 |------|------|
 | `shared/api/kakao-book/searchBooks.ts` | Kakao `/v3/search/book` 호출 |
-| `features/search-books/useSearchBooksInfinite.ts` | `useInfiniteQuery` 래퍼. `is_end` 또는 50페이지 초과 시 중단 |
+| `features/search-books/useSearchBooksInfinite.ts` | `useInfiniteQuery` 래퍼. `is_end` · 빈 응답 · `MAX_PAGE` 초과 중 하나라도 만족하면 중단 |
 | `features/search-books/searchModeStore.ts` | 일반 ↔ 상세 검색 상호 배타 상태 |
 | `features/toggle-favorite/favoriteStore.ts` | 찜 스냅샷 + `localStorage` 영속 |
+| `features/search-history/searchHistoryStore.ts` | 최근 검색어 최대 8개, 중복 제거, `localStorage` 영속 |
 | `features/detail-search/DetailSearchPopover.tsx` | 일반검색 실행 시 store 구독으로 필터·입력값 자동 리셋 |
-| `widgets/book-list/BookList.tsx` | IntersectionObserver 기반 페이지네이션 |
+| `features/book-accordion/BookAccordion.tsx` | 카드 확장 시 로드되는 상세 영역. `React.lazy` 대상 |
+| `widgets/search-bar/SearchBar.tsx` | 검색창 + 히스토리 앵커 + 상세검색 팝업 트리거 조율 |
+| `widgets/book-list/BookList.tsx` | 검색 모드 구독, 페이지 flatten, 에러 토스트, `InfiniteSentinel` 마운트 |
+| `entities/book/ui/BookCard.tsx` | 카드 UI + `BookAccordion` 지연 로드 지점 |
+| `entities/book/model/selectors.ts` | 저자/역자 결합, 할인가 우선 표시 셀렉터 |
 | `shared/ui/infinite-sentinel.tsx` | 콜백을 latest-ref 로 보관해 observer 재구성 방지 |
-| `shared/lib/cn.ts` | `tailwind-merge` 커스텀 토큰 group 확장 |
+| `shared/lib/cn.ts` | `tailwind-merge` 커스텀 토큰 group (font-size, text/border/bg color) 확장 |
 
 ---
 
