@@ -101,7 +101,7 @@ export const SearchBar = () => {
             if (target.closest('[data-search-row]')) event.preventDefault();
           }}
         >
-          <SearchHistoryDropdown onPick={(query) => runGeneral(query)} />
+          <SearchHistoryDropdown onPick={runGeneral} />
         </PopoverContent>
       </Popover>
     </div>
