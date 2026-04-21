@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import type { BookDocument } from '@/shared/api/kakao-book';
 import { BookCover } from './BookCover';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite/ToggleFavoriteButton';
-import { BookAccordion } from '@/features/book-accordion/BookAccordion';
 import { formatAuthors, displayPrice } from '@/entities/book/model/selectors';
 import { formatKRW } from '@/shared/lib/format';
 import { ChevronIcon } from '@/shared/ui/icons';
 import { Button } from '@/shared/ui/button';
+
+// 상세보기 펼침 시점에만 코드 분할 로드 — 초기 번들에서 제외.
+const BookAccordion = lazy(() =>
+  import('@/features/book-accordion/BookAccordion').then((m) => ({ default: m.BookAccordion })),
+);
 
 interface BookCardProps {
   book: BookDocument;
@@ -71,7 +75,11 @@ export const BookCard = ({ book }: BookCardProps) => {
         </Button>
       </div>
 
-      {open && <BookAccordion book={book} />}
+      {open && (
+        <Suspense fallback={null}>
+          <BookAccordion book={book} />
+        </Suspense>
+      )}
     </div>
   );
 };
